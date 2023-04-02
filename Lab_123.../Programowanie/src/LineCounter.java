@@ -13,6 +13,7 @@ public class LineCounter {
             while (file.readLine() != null) {
                 lineCount ++;
             }
+            file.close();
             System.out.println("Liczba wierszy w pliku abc.txt wynosi: " + lineCount);
         }
         catch (FileNotFoundException exc){
