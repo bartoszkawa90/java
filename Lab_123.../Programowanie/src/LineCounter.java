@@ -16,6 +16,7 @@ public class LineCounter {
             file.close();
             System.out.println("Liczba wierszy w pliku abc.txt wynosi: " + lineCount);
         }
+        // Brak uprawnien do pliku to tez zwraca File not found
         catch (FileNotFoundException exc){
             System.err.println("Nie znaleziono pliku " + args[0]);
         }
