@@ -18,6 +18,7 @@ public class LineCounterPane {
                 lineCount ++;
             }
             file.close();
+            JOptionPane.showMessageDialog(null, "Liczba linii w pliku " + file_name + " wynosi " + lineCount);
             System.out.println("Liczba wierszy w pliku abc.txt wynosi: " + lineCount);
         }
         // Brak uprawnien do pliku to tez zwraca File not found
