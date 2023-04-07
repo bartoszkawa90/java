@@ -6,24 +6,43 @@ public class LineCounterPane {
 
     public static void main(String[] args) throws IOException{
 
-        String file_name = JOptionPane.showInputDialog("Podaj nazwe pliku .txt : ");
+        String fileName = JOptionPane.showInputDialog("Podaj nazwe pliku .txt : ");
 
-        if ( file_name == null || file_name.length() == 0){    // NullPointerException is handled
+        if ( fileName == null || fileName.length() == 0){    // NullPointerException is handled
             System.out.println("Brak argumentu");
             return;
         }
+
+        File f1 = new File(fileName);
         int lineCount = 0;
-        try (BufferedReader file = new BufferedReader(new FileReader(file_name))){
+        try (BufferedReader file = new BufferedReader(new FileReader(fileName))){
             while (file.readLine() != null) {
                 lineCount ++;
             }
             file.close();
-            JOptionPane.showMessageDialog(null, "Liczba linii w pliku " + file_name + " wynosi " + lineCount);
+            JOptionPane.showMessageDialog(null, "Liczba linii w pliku " + fileName + " wynosi " + lineCount);
             System.out.println("Liczba wierszy w pliku abc.txt wynosi: " + lineCount);
         }
-        // Brak uprawnien do pliku to tez zwraca File not found
         catch (FileNotFoundException exc){
-            System.err.println("Nie znaleziono pliku " + file_name);
+            if(!f1.exists()){
+                System.err.println("Plik  nie istnieje");
+                JOptionPane.showMessageDialog(null, "Plik  nie istnieje");
+            }
+            else if (f1.isDirectory()) {
+                System.err.println("Plik  jest katalogiem");
+                JOptionPane.showMessageDialog(null, "Plik  jest katalogiem");
+            }
+            else if (!f1.canRead()) {
+                System.err.println("Brak uprawnien do odczytu z pliku ");
+                JOptionPane.showMessageDialog(null, "rak uprawnien do odczytu z pliku");
+            }
+            else{
+                System.err.println("Nie znaleziono pliku ");
+                JOptionPane.showMessageDialog(null, "Nie znaleziono pliku");
+            }
+        }
+        catch (ArrayIndexOutOfBoundsException exc){
+            System.err.println("Nie podano pliku do odczytania ");
         }
         catch (IOException exc){
             exc.printStackTrace();
