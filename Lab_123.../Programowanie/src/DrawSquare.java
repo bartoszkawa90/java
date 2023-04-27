@@ -1,9 +1,10 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
 public class DrawSquare {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InputMismatchException {
 
         try {
             Scanner scan = new Scanner(System.in);
@@ -11,8 +12,7 @@ public class DrawSquare {
             int size = scan.nextInt();
 
             if (size <= 0) {
-                System.out.println("Podano niewłaściwą długość boku!");
-                return;
+                throw new java.util.InputMismatchException();
             }
 
             for (int i = 0; i < size; i++) {
@@ -31,7 +31,8 @@ public class DrawSquare {
             }
         }
         catch(java.util.InputMismatchException exc){
-            System.err.println("Podana wartość nie jest liczbą!");
+            System.err.println("Podano niewłaściwą długość boku!");
+
         }
 
     }
