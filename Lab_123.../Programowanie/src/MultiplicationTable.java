@@ -25,24 +25,31 @@ public class MultiplicationTable {
             keys.load(inputStream);
             int minVal = Integer.parseInt(keys.getProperty("wartość_minimum"));
             int maxVal = Integer.parseInt(keys.getProperty("wartość_maximum"));
-            int procent = Integer.parseInt(keys.getProperty("procent"));
+//            int procent = Integer.parseInt(keys.getProperty("procent"));
+            float procent = Float.parseFloat(keys.getProperty("procent"));
             int minPow = Integer.parseInt(keys.getProperty("powtórzeń_minimum"));
             int maxPow = Integer.parseInt(keys.getProperty("powtórzeń_maximum"));
 
             Scanner scan = new Scanner(System.in);
             Random random = new Random();
-            int goodAnswer = 0, answer = 0, RandNum1 = 0, RandNum2 = 0;
+            int answer = 0, RandNum1 = 0, RandNum2 = 0;
+            float score = 0, goodAnswer = 0;
+
             for(int i=0; i<maxPow; i++){
-                RandNum1 = (random.nextInt(10)+1);
-                RandNum2 = (random.nextInt(10)+1);
+                System.out.print("\033c");   // kazde wykonanie płetli jedzie od nowa
+                RandNum1 = (random.nextInt(maxVal)+minVal);
+                RandNum2 = (random.nextInt(maxVal)+minVal);
 
                 System.out.print(RandNum1 + " * " + RandNum2 + " = ");
                 answer = scan.nextInt();
                 if (answer == (RandNum1 * RandNum2)){
                     goodAnswer ++;
                 }
-//                System.out.println("  " + ((goodAnswer*100)/(i+1)) + "  " + i);
-                if(i >= 9 && ((goodAnswer*100)/(i+1)) >= procent){
+                score = ((goodAnswer*100)/(i+1));
+                if(i >= (minPow-1) && ((goodAnswer*100)/(i+1)) >= procent){
+                    System.out.println("Liczba prób " + (i+1) + " w tym " + (int)(goodAnswer) +
+                            " poprawnych odpowiedzi co daje" +
+                            " ostateczny wynik " + score + "% ~ " + Math.round(score) + "%");
                     break;
                 }
             }
