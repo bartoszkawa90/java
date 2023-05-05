@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class MyFirstCalculator {
@@ -7,12 +9,13 @@ public class MyFirstCalculator {
     public static void createAndShowGUI() {
     // Setup
         JFrame jf = new JFrame("My First Calculator");
+        String text = "";
 
     // Pole text i przyciski
         JTextField line = new JTextField(22);
         line.setFont(new Font("Courier", Font.BOLD,22));
         line.setHorizontalAlignment(SwingConstants.RIGHT);
-        line.setText("0");
+        line.setText(text);
 
         JButton ZeroButton = new JButton("0");
         ZeroButton.setPreferredSize(new Dimension(65,28));
@@ -65,12 +68,19 @@ public class MyFirstCalculator {
         jf.getContentPane().add(ClearButton);
         jf.getContentPane().add(DivButton);
 
+        ZeroButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(" Button = 0");
+            }
+        });
+
 
         jf.pack();
         jf.setLayout(new FlowLayout());
-        jf.setLocationRelativeTo(null);
         jf.setBackground(Color.GRAY);
         jf.setSize(330,210);
+        jf.setLocationRelativeTo(null);
         jf.setVisible(true);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
