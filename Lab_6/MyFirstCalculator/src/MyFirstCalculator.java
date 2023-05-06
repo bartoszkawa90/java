@@ -11,8 +11,8 @@ public class MyFirstCalculator{
     static String[] cyfra = {"0","0","0","0","0"};
     static String operator = "";
     static int nrCyfry = 0;
+    static int afterNumber = 0;
     static int result = 0;
-
     public static void createAndShowGUI() {
     // Setup
         JFrame jf = new JFrame("My First Calculator");
@@ -88,45 +88,88 @@ public class MyFirstCalculator{
     // Akcje
         ActionListener myActionListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
+                if (e.getSource() == EqualButton || (e.getSource() == PlusButton && afterNumber==1)) {
+                    int intCyfry [] = new int[nrCyfry+1];
+                    for(int i=0; i<nrCyfry+1; i++){
+                        intCyfry[i] = Integer.parseInt(cyfra[i]);
+                        System.out.println(intCyfry[i]);
+                    }
+
+                    if ( operator != ""){
+                        switch(operator)
+                        {
+                            case "+":   result = intCyfry[0]+intCyfry[1];  break;
+                            case "-":   result = intCyfry[0]-intCyfry[1];   break;
+                            case "*":   result = intCyfry[0]*intCyfry[1]; break;
+                            case "/":   result = intCyfry[0]/intCyfry[1]; break;
+
+                        }
+                        cyfra[0] = Integer.toString(result);
+                        for(int i=1; i<nrCyfry+1; i++){
+                            cyfra[i] = "0";
+                        }
+                        nrCyfry = 0;
+                        afterNumber = 0;
+                        line.setText(Integer.toString(result));
+                    }
+                    if (e.getSource() == PlusButton) {
+//                        nrCyfry++;
+                        operator = "+";
+                    }
+
+                }
+
+
                 if(e.getSource() == ZeroButton){
                     cyfra[nrCyfry] = cyfra[nrCyfry] + "0";
                     line.setText(cyfra[nrCyfry]);
+                    afterNumber = 1;
                 }
                 else if (e.getSource() == OneButton) {
                     cyfra[nrCyfry] = cyfra[nrCyfry] +  "1";
                     line.setText(cyfra[nrCyfry]);
+                    afterNumber = 1;
                 }
                 else if (e.getSource() == TwoButton) {
                     cyfra[nrCyfry] = cyfra[nrCyfry] +  "2";
                     line.setText(cyfra[nrCyfry]);
+                    afterNumber = 1;
                 }
                 else if (e.getSource() == ThreeButton) {
                     cyfra[nrCyfry] = cyfra[nrCyfry] +  "3";
                     line.setText(cyfra[nrCyfry]);
+                    afterNumber = 1;
                 }
                 else if (e.getSource() == FourButton) {
                     cyfra[nrCyfry] = cyfra[nrCyfry] +  "4";
                     line.setText(cyfra[nrCyfry]);
+                    afterNumber = 1;
                 }
                 else if (e.getSource() == FiveButton) {
                     cyfra[nrCyfry] = cyfra[nrCyfry] +  "5";
                     line.setText(cyfra[nrCyfry]);
+                    afterNumber = 1;
                 }
                 else if (e.getSource() == SixButton) {
                     cyfra[nrCyfry] = cyfra[nrCyfry] +  "6";
                     line.setText(cyfra[nrCyfry]);
+                    afterNumber = 1;
                 }
                 else if (e.getSource() == SevenButton) {
                     cyfra[nrCyfry] = cyfra[nrCyfry] +  "7";
                     line.setText(cyfra[nrCyfry]);
+                    afterNumber = 1;
                 }
                 else if (e.getSource() == EightButton) {
                     cyfra[nrCyfry] = cyfra[nrCyfry] +  "8";
                     line.setText(cyfra[nrCyfry]);
+                    afterNumber = 1;
                 }
                 else if (e.getSource() == NineButton) {
                     cyfra[nrCyfry] = cyfra[nrCyfry] +  "9";
                     line.setText(cyfra[nrCyfry]);
+                    afterNumber = 1;
                 }
                 else if (e.getSource() == PlusButton) {
                     nrCyfry++;
@@ -152,27 +195,8 @@ public class MyFirstCalculator{
                     nrCyfry = 0;
                     line.setText("0");
                 }
-                else if (e.getSource() == EqualButton) {
-                    System.out.println(" ");
-                    int intCyfry [] = new int[nrCyfry+1];
-                    for(int i=0; i<nrCyfry+1; i++){
-                        intCyfry[i] = Integer.parseInt(cyfra[i]);
-                        System.out.println(intCyfry[i]);
-                    }
 
-                    if ( operator != ""){
-                        switch(operator)
-                        {
-                            case "+":   result = intCyfry[0]+intCyfry[1];  break;
-                            case "-":   result = intCyfry[0]-intCyfry[1];   break;
-                            case "*":   result = intCyfry[0]*intCyfry[1]; break;
-                            case "/":   result = intCyfry[0]/intCyfry[1]; break;
 
-                        }
-                        line.setText(Integer.toString(result));
-                    }
-
-                }
                 for(int i=0; i<nrCyfry+1; i++){
                     System.out.println("nrCyfry " + nrCyfry + " index " + i + " cyfra " + cyfra[i]);
                 }
