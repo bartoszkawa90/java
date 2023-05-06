@@ -4,13 +4,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MyFirstCalculator{
+    JTextField line = new JTextField(22);
+    static String[] cyfra = {"0","0","0","0","0"};
+    static String operator = "";
+    static int nrCyfry = 0;
+    static int result = 0;
 
     public static void createAndShowGUI() {
     // Setup
         JFrame jf = new JFrame("My First Calculator");
         JPanel jp = new JPanel();
+        cyfra[0] = "0";
 
 
     // Setup pola tekstowego
@@ -82,53 +89,94 @@ public class MyFirstCalculator{
         ActionListener myActionListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource() == ZeroButton){
-                    System.out.println("0");
+                    cyfra[nrCyfry] = cyfra[nrCyfry] + "0";
+                    line.setText(cyfra[nrCyfry]);
                 }
                 else if (e.getSource() == OneButton) {
-                    System.out.println("1");
+                    cyfra[nrCyfry] = cyfra[nrCyfry] +  "1";
+                    line.setText(cyfra[nrCyfry]);
                 }
                 else if (e.getSource() == TwoButton) {
-                    System.out.println("1");
+                    cyfra[nrCyfry] = cyfra[nrCyfry] +  "2";
+                    line.setText(cyfra[nrCyfry]);
                 }
                 else if (e.getSource() == ThreeButton) {
-                    System.out.println("1");
+                    cyfra[nrCyfry] = cyfra[nrCyfry] +  "3";
+                    line.setText(cyfra[nrCyfry]);
                 }
                 else if (e.getSource() == FourButton) {
-                    System.out.println("1");
+                    cyfra[nrCyfry] = cyfra[nrCyfry] +  "4";
+                    line.setText(cyfra[nrCyfry]);
                 }
                 else if (e.getSource() == FiveButton) {
-                    System.out.println("1");
+                    cyfra[nrCyfry] = cyfra[nrCyfry] +  "5";
+                    line.setText(cyfra[nrCyfry]);
                 }
                 else if (e.getSource() == SixButton) {
-                    System.out.println("1");
+                    cyfra[nrCyfry] = cyfra[nrCyfry] +  "6";
+                    line.setText(cyfra[nrCyfry]);
                 }
                 else if (e.getSource() == SevenButton) {
-                    System.out.println("1");
+                    cyfra[nrCyfry] = cyfra[nrCyfry] +  "7";
+                    line.setText(cyfra[nrCyfry]);
                 }
                 else if (e.getSource() == EightButton) {
-                    System.out.println("1");
+                    cyfra[nrCyfry] = cyfra[nrCyfry] +  "8";
+                    line.setText(cyfra[nrCyfry]);
                 }
                 else if (e.getSource() == NineButton) {
-                    System.out.println("1");
+                    cyfra[nrCyfry] = cyfra[nrCyfry] +  "9";
+                    line.setText(cyfra[nrCyfry]);
                 }
                 else if (e.getSource() == PlusButton) {
-                    System.out.println("1");
+                    nrCyfry++;
+                    operator = "+";
                 }
                 else if (e.getSource() == MinusButton) {
-                    System.out.println("1");
+                    nrCyfry++;
+                    operator = "-";
                 }
                 else if (e.getSource() == MulButton) {
-                    System.out.println("1");
+                    nrCyfry++;
+                    operator = "*";
                 }
                 else if (e.getSource() == DivButton) {
-                    System.out.println("1");
+                    nrCyfry++;
+                    operator = "/";
                 }
                 else if (e.getSource() == ClearButton) {
-                    System.out.println("1");
+                    System.out.println("Clear");
+                    Arrays.fill(cyfra,null);
+                    cyfra[0] = "0";
+                    operator = "";
+                    nrCyfry = 0;
+                    line.setText("0");
                 }
                 else if (e.getSource() == EqualButton) {
-                    System.out.println("=");
+                    System.out.println(" ");
+                    int intCyfry [] = new int[nrCyfry+1];
+                    for(int i=0; i<nrCyfry+1; i++){
+                        intCyfry[i] = Integer.parseInt(cyfra[i]);
+                        System.out.println(intCyfry[i]);
+                    }
+
+                    if ( operator != ""){
+                        switch(operator)
+                        {
+                            case "+":   result = intCyfry[0]+intCyfry[1];  break;
+                            case "-":   result = intCyfry[0]-intCyfry[1];   break;
+                            case "*":   result = intCyfry[0]*intCyfry[1]; break;
+                            case "/":   result = intCyfry[0]/intCyfry[1]; break;
+
+                        }
+                        line.setText(Integer.toString(result));
+                    }
+
                 }
+                for(int i=0; i<nrCyfry+1; i++){
+                    System.out.println("nrCyfry " + nrCyfry + " index " + i + " cyfra " + cyfra[i]);
+                }
+                System.out.println("operator " + operator);
             }
         };
         ZeroButton.addActionListener(myActionListener);
