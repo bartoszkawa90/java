@@ -101,20 +101,26 @@ public class MyFirstCalculator{
                         }
 
                         if (!operator.equals("")) {
-                            switch (operator) {
-                                case "+":
-                                    result = intCyfry[0] + intCyfry[1];
-                                    break;
-                                case "-":
-                                    result = intCyfry[0] - intCyfry[1];
-                                    break;
-                                case "*":
-                                    result = intCyfry[0] * intCyfry[1];
-                                    break;
-                                case "/":
-                                    result = intCyfry[0] / intCyfry[1];
-                                    break;
+                            if(intCyfry[1] != 0){
+                                switch (operator) {
+                                    case "+":
+                                        result = intCyfry[0] + intCyfry[1];
+                                        break;
+                                    case "-":
+                                        result = intCyfry[0] - intCyfry[1];
+                                        break;
+                                    case "*":
+                                        result = intCyfry[0] * intCyfry[1];
+                                        break;
+                                    case "/":
+                                        result = intCyfry[0] / intCyfry[1];
+                                        break;
 
+                                }
+                            }
+                            else{
+                                System.out.println("Div /0");
+                                line.setText("Err: Division by zero");
                             }
                             cyfra[0] = Integer.toString(result);
                             afterNumber = 0;
@@ -144,20 +150,26 @@ public class MyFirstCalculator{
                         }
 
                         if (!operator.equals("")) {
-                            switch (operator) {
-                                case "+":
-                                    result = intCyfry[0] + intCyfry[1];
-                                    break;
-                                case "-":
-                                    result = intCyfry[0] - intCyfry[1];
-                                    break;
-                                case "*":
-                                    result = intCyfry[0] * intCyfry[1];
-                                    break;
-                                case "/":
-                                    result = intCyfry[0] / intCyfry[1];
-                                    break;
+                            if(intCyfry[1] != 0) {
+                                switch (operator) {
+                                    case "+":
+                                        result = intCyfry[0] + intCyfry[1];
+                                        break;
+                                    case "-":
+                                        result = intCyfry[0] - intCyfry[1];
+                                        break;
+                                    case "*":
+                                        result = intCyfry[0] * intCyfry[1];
+                                        break;
+                                    case "/":
+                                        result = intCyfry[0] / intCyfry[1];
+                                        break;
 
+                                }
+                            }
+                            else{
+                                System.out.println("Div /0");
+                                line.setText("Err: Division by zero");
                             }
                             cyfra[0] = Integer.toString(result);
                             afterNumber = 0;
@@ -388,9 +400,7 @@ public class MyFirstCalculator{
         ClearButton.addActionListener(myActionListener);
         EqualButton.addActionListener(myActionListener);
 
-
-
-
+        
     // Finish
         jf.add(jp);
         jf.pack();
