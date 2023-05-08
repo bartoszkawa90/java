@@ -91,6 +91,9 @@ public class MyFirstCalculator{
                 if (afterEqual == 0) {
                     if (e.getSource() == EqualButton || ((e.getSource() == PlusButton || e.getSource() == MinusButton ||
                             e.getSource() == MulButton || e.getSource() == DivButton) && afterNumber == 1)) {
+                        if (cyfra[1].equals("0") && afterNumber==0){
+                            cyfra[1] = cyfra[0];
+                        }
                         int intCyfry[] = new int[nrCyfry + 1];
                         for (int i = 0; i < nrCyfry + 1; i++) {
                             intCyfry[i] = Integer.parseInt(cyfra[i]);
@@ -114,10 +117,6 @@ public class MyFirstCalculator{
 
                             }
                             cyfra[0] = Integer.toString(result);
-//                            for (int i = 1; i < nrCyfry + 1; i++) {
-//                                cyfra[i] = "0";
-//                            }
-//                            nrCyfry = 0;
                             afterNumber = 0;
                             line.setText(Integer.toString(result));
                         }
@@ -135,6 +134,9 @@ public class MyFirstCalculator{
                 }
                 else if(afterEqual == 1){
                     if (e.getSource() == EqualButton ) {
+                        if (cyfra[1].equals("0") && afterNumber==0){
+                            cyfra[1] = cyfra[0];
+                        }
                         int intCyfry[] = new int[nrCyfry + 1];
                         for (int i = 0; i < nrCyfry + 1; i++) {
                             intCyfry[i] = Integer.parseInt(cyfra[i]);
@@ -158,23 +160,9 @@ public class MyFirstCalculator{
 
                             }
                             cyfra[0] = Integer.toString(result);
-//                            for (int i = 1; i < nrCyfry + 1; i++) {
-//                                cyfra[i] = "0";
-//                            }
-//                            nrCyfry = 0;
                             afterNumber = 0;
                             line.setText(Integer.toString(result));
                         }
-//                        if (e.getSource() == PlusButton) {
-//                            operator = "+";
-//                        } else if (e.getSource() == MinusButton) {
-//                            operator = "-";
-//                        } else if (e.getSource() == MulButton) {
-//                            operator = "*";
-//                        } else if (e.getSource() == DivButton) {
-//                            operator = "/";
-//                        }
-//                        afterEqual = 1;
                     }
                 }
 
@@ -323,17 +311,22 @@ public class MyFirstCalculator{
                     afterNumber = 0;
                 }
                 else if (e.getSource() == MinusButton) {
-                    if (afterEqual == 1) {
-                        for (int i = 1; i < nrCyfry + 1; i++) {
-                            cyfra[i] = "0";
+                    if(nrCyfry==0){
+                        cyfra[nrCyfry] = "-" + cyfra[nrCyfry].substring(1);
+                    }
+                    else {
+                        if (afterEqual == 1) {
+                            for (int i = 1; i < nrCyfry + 1; i++) {
+                                cyfra[i] = "0";
+                            }
+                            nrCyfry = 0;
+                            afterEqual = 0;
+                            afterNumber = 0;
                         }
-                        nrCyfry = 0;
-                        afterEqual = 0;
+                        nrCyfry++;
+                        operator = "-";
                         afterNumber = 0;
                     }
-                    nrCyfry++;
-                    operator = "-";
-                    afterNumber = 0;
                 }
                 else if (e.getSource() == MulButton) {
                     if (afterEqual == 1) {
