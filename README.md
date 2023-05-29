@@ -1,6 +1,9 @@
 # JAVA
 
 
+## Token//Hasło do pushowania
+
+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
 
 ## Getting started
 
