@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b37eacdd-925f-44ab-813e-bb6932d55a31" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../Projekt/Project/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/Project/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/Project/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/Project/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/Project/Project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/androidTest/java/com/example/project/ExampleInstrumentedTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/java/com/example/project/MainActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/java/com/example/project/WebNews.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/mipmap-hdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/mipmap-mdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/values-night/themes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/xml/backup_rules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/main/res/xml/data_extraction_rules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/app/src/test/java/com/example/project/ExampleUnitTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndr/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Projekt/ProjectAndroid/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2QmqRxCCWCGzU9Mie96V0H5qfbR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/home/bartosz/Desktop/java/MOJE/Projeckt"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b37eacdd-925f-44ab-813e-bb6932d55a31" name="Changes" comment="" />
+      <created>1685969099544</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1685969099544</updated>
+    </task>
+    <servers />
+  </component>
+</project>
