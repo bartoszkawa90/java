@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.net.*;
 import java.io.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,12 +15,21 @@ import org.jsoup.select.Elements;
 
 public class Main {
 
-    public static String collectNews(String url){
+    static List<String > Naglowki = new ArrayList<>();
+
+    public static String collectNews(){
         //"https://krknews.pl/"
         try
         {
-            Document doc = Jsoup.connect(url).get();
-//            System.out.println(doc.text());
+            Document doc = Jsoup.connect("https://krknews.pl/").get();
+            Elements divs = doc.getElementsByTag("a");
+            Elements href = doc.getElementsByAttribute("title");
+            for ( Element ele : href){
+//                System.out.println(ele.textNodes());
+                if(!Naglowki.contains(ele.text())){
+                    Naglowki.add(ele.textNodes().toString());
+                }
+            }
 
             return doc.title();
         }
@@ -31,8 +42,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String title = collectNews("https://krknews.pl/");
-        System.out.println(title);
-
+        String title = collectNews();
+        for (String s : Naglowki){
+            System.out.println(s);
+        }
     }
 }

@@ -21,7 +21,6 @@ public class WebNews implements Runnable {
         try
         {
             Document doc = Jsoup.connect("https://krknews.pl/").get();
-//            title = doc.getElementsByTag("parse").attr("title");
             string = doc.title();
 
             return string;
@@ -37,11 +36,11 @@ public class WebNews implements Runnable {
     public void run(){
         // Wątek zbierający informacje odświerzany co 10s
         while(true){
-//            try {
-//                Thread.sleep(10000);
-//            } catch (InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             title = collectNews();
         }
     }
