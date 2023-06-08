@@ -15,12 +15,22 @@ import org.jsoup.select.Elements;
 import javax.print.Doc;
 
 
-public class Main {
+public class Main_2 {
 
     static List<String> Links = new ArrayList<>();
 
     static List<String > Headlines = new ArrayList<>();
 
+    public static List<String> removeDuplicates(List<String> S){
+        List<String> New = new ArrayList<>();
+
+        for(String s: S){
+            if(!New.contains(s)){
+                New.add(s);
+            }
+        }
+        return New;
+    }
 
     public static void collectNews(){
         //"https://krknews.pl/"
@@ -34,10 +44,8 @@ public class Main {
                 String headline = art.getAllElements().attr("title");
                 String link = art.getAllElements().attr("href");
 
-//                Links.add(link);
-//                Headlines.add(headline);
                 if (!Links.contains(link)){ Links.add(link); }
-                if (!Headlines.contains(headline) && !headline.equals("")) { Headlines.add(headline); }
+                if (!Headlines.contains(headline)) { Headlines.add(headline); }
 
             }
 
@@ -55,12 +63,9 @@ public class Main {
         Iterator<String> LinkIterator = Links.iterator();
         Iterator<String> HeadlineIterator = Headlines.iterator();
 
-        System.out.println(Headlines.get(40).split(" ",0)[0] + "\n");
-
         while (LinkIterator.hasNext() && HeadlineIterator.hasNext() ){
-//            System.out.println(LinkIterator.next());
-//            System.out.println(HeadlineIterator.next());
-            System.out.println(HeadlineIterator.next().split(" ",1)[0]);
+            System.out.println(LinkIterator.next());
+            System.out.println(HeadlineIterator.next());
         }
 
     }
