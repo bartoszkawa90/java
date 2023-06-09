@@ -1,11 +1,11 @@
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.*;
 import java.io.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.text.Normalizer;
+import java.util.*;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,6 +21,14 @@ public class Main {
 
     static List<String > Headlines = new ArrayList<>();
 
+    static Map News = new HashMap();
+
+    public static String unaccent(String src) {
+        return Normalizer
+                .normalize(src, Normalizer.Form.NFD)
+                .replaceAll("[^\\p{ASCII}]", "");
+    }
+
 
     public static void collectNews(){
         //"https://krknews.pl/"
@@ -34,13 +42,9 @@ public class Main {
                 String headline = art.getAllElements().attr("title");
                 String link = art.getAllElements().attr("href");
 
-//                Links.add(link);
-//                Headlines.add(headline);
-                if (!Links.contains(link)){ Links.add(link); }
-                if (!Headlines.contains(headline) && !headline.equals("")) { Headlines.add(headline); }
-
+                if (!Links.contains(link) && !link.equals("")){ Links.add(link); }
+                if (!Headlines.contains(headline) && !headline.equals("") && headline.split(" ", 50).length > 1) { Headlines.add(headline); }
             }
-
         }
         catch(IOException e)
         {
@@ -52,16 +56,23 @@ public class Main {
     public static void main(String[] args) {
         collectNews();
 
-        Iterator<String> LinkIterator = Links.iterator();
-        Iterator<String> HeadlineIterator = Headlines.iterator();
+        System.out.println(Links.size());
+        System.out.println(Headlines.size() + "\n");
 
-        System.out.println(Headlines.get(40).split(" ",0)[0] + "\n");
+        for(String headline : Headlines){
+            String headFrag = unaccent(headline.split(" ", 50)[0] + "-" +
+                    headline.split(" ", 50)[1] + "-" +
+                    headline.split(" ", 50)[2]).toLowerCase();
 
-        while (LinkIterator.hasNext() && HeadlineIterator.hasNext() ){
-//            System.out.println(LinkIterator.next());
-//            System.out.println(HeadlineIterator.next());
-            System.out.println(HeadlineIterator.next().split(" ",1)[0]);
+            for(String link : Links){
+                if(link.contains(headFrag)){
+                    News.put(headline,link);
+                }
+            }
         }
 
+        News.forEach((k,v) -> {
+            System.out.println("Headline : " + k + "\nLink : " + v);
+        });
     }
 }
