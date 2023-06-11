@@ -21,7 +21,7 @@ public class Main {
 
     static List<String > Headlines = new ArrayList<>();
 
-    static Map News = new HashMap();
+    static Map<String, String > News = new HashMap<String, String >();
 
     public static String unaccent(String src) {
         return Normalizer
@@ -63,14 +63,12 @@ public class Main {
             String headFrag = unaccent(headline.split(" ", 50)[0] + "-" +
                     headline.split(" ", 50)[1] + "-" +
                     headline.split(" ", 50)[2]).toLowerCase();
-
             for(String link : Links){
                 if(link.contains(headFrag)){
                     News.put(headline,link);
                 }
             }
         }
-
         News.forEach((k,v) -> {
             System.out.println("Headline : " + k + "\nLink : " + v);
         });
