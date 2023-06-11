@@ -1,17 +1,13 @@
 package com.example.project;
 
-import static com.example.project.WebNews.*;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -38,8 +34,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String title = WebNews.getTitle();
-                TextView NewsTextView = (TextView)findViewById(R.id.NewsTextView);
+                Map<String, String> News = WebNews.getSetOfNews();
+
+                TextView NewsTextView = (TextView)findViewById(R.id.WebsiteTextView);
                 NewsTextView.setText(title);
+
             }
         });
 

@@ -21,9 +21,9 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/NewsTextView"
+        android:id="@+id/WebsiteTextView"
         android:layout_width="350dp"
-        android:layout_height="450dp"
+        android:layout_height="30dp"
         android:layout_marginStart="31dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="31dp"
@@ -32,10 +32,10 @@
         android:text="News"
         app:layout_constraintBottom_toTopOf="@+id/LogsTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TitleTextView"
-        app:layout_constraintVertical_bias="0.125" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/ExitButton"
@@ -64,8 +64,8 @@
         android:gravity="left"
         android:text="Logs"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/NewsTextView"
-        app:layout_constraintStart_toStartOf="@+id/NewsTextView" />
+        app:layout_constraintEnd_toEndOf="@+id/WebsiteTextView"
+        app:layout_constraintStart_toStartOf="@+id/WebsiteTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
