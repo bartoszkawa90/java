@@ -18,10 +18,12 @@ public class MainActivity extends AppCompatActivity {
 
     Button ExitButton,ReloadButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         // Exit button action
         this.ExitButton = (Button)this.findViewById(R.id.ExitButton);
@@ -42,55 +44,70 @@ public class MainActivity extends AppCompatActivity {
 
                 TextView NewsTextView = (TextView)findViewById(R.id.WebsiteTextView);
                 NewsTextView.setText(title);
-
             }
         });
 
         Thread CollectingNewsThread = new Thread(new WebNews());
         CollectingNewsThread.start();
 
-        TableLayout stk = (TableLayout) findViewById(R.id.tableLayout);
-        TableRow tbrow0 = new TableRow(this);
-        TextView tv0 = new TextView(this);
-        tv0.setText(" Sl.No ");
-        tv0.setTextColor(Color.BLACK);
-        tbrow0.addView(tv0);
-        TextView tv1 = new TextView(this);
-        tv1.setText(" Product ");
-        tv1.setTextColor(Color.BLACK);
-        tbrow0.addView(tv1);
-        TextView tv2 = new TextView(this);
-        tv2.setText(" Unit Price ");
-        tv2.setTextColor(Color.BLACK);
-        tbrow0.addView(tv2);
-        TextView tv3 = new TextView(this);
-        tv3.setText(" Stock Remaining ");
-        tv3.setTextColor(Color.BLACK);
-        tbrow0.addView(tv3);
-        stk.addView(tbrow0);
-        for (int i = 0; i < 25; i++) {
-            TableRow tbrow = new TableRow(this);
-            TextView t1v = new TextView(this);
-            t1v.setText("" + i);
-            t1v.setTextColor(Color.BLACK);
-            t1v.setGravity(Gravity.CENTER);
-            tbrow.addView(t1v);
-            TextView t2v = new TextView(this);
-            t2v.setText("Product " + i);
-            t2v.setTextColor(Color.BLACK);
-            t2v.setGravity(Gravity.CENTER);
-            tbrow.addView(t2v);
-            TextView t3v = new TextView(this);
-            t3v.setText("Rs." + i);
-            t3v.setTextColor(Color.BLACK);
-            t3v.setGravity(Gravity.CENTER);
-            tbrow.addView(t3v);
-            TextView t4v = new TextView(this);
-            t4v.setText("" + i * 15 / 32 * 10);
-            t4v.setTextColor(Color.BLACK);
-            t4v.setGravity(Gravity.CENTER);
-            tbrow.addView(t4v);
-            stk.addView(tbrow);
+            TableLayout stk = (TableLayout) findViewById(R.id.tableLayout);
+            TableRow tbrow0 = new TableRow(this);
+            TextView tv0 = new TextView(this);
+            tv0.setText("               Article Title ");
+            tv0.setTextColor(Color.BLACK);
+            tv0.setTextSize(18);
+            tbrow0.addView(tv0);
+
+            TextView tv1 = new TextView(this);
+            tv1.setText("                   Link ");
+            tv1.setTextColor(Color.BLACK);
+            tv1.setTextSize(18);
+            tbrow0.addView(tv1);
+            stk.addView(tbrow0);
+
+
+            for (int i = 0; i < WebNews.numberOfArticles; i++) {
+                String head = WebNews.News.entrySet().toArray()[i].toString().split("=")[0];
+                String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
+
+                TableRow tbrow = new TableRow(this);
+                TextView headline1 = new TextView(this);
+                headline1.setText(head);
+                headline1.setTextColor(Color.BLACK);
+                headline1.setTextSize(14);
+                tbrow.addView(headline1);
+
+                TextView link1 = new TextView(this);
+                link1.setText(link);
+                link1.setTextColor(Color.BLACK);
+                link1.setTextSize(14);
+                tbrow.addView(link1);
+                stk.addView(tbrow);
+//
+//
+//            TableRow tbrow = new TableRow(this);
+//            TextView t1v = new TextView(this);
+//            t1v.setText("" + i);
+//            t1v.setTextColor(Color.BLACK);
+//            t1v.setGravity(Gravity.CENTER);
+//            tbrow.addView(t1v);
+
+//            TextView t2v = new TextView(this);
+//            t2v.setText("Product " + i);
+//            t2v.setTextColor(Color.BLACK);
+//            t2v.setGravity(Gravity.CENTER);
+//            tbrow.addView(t2v);
+//            TextView t3v = new TextView(this);
+//            t3v.setText("Rs." + i);
+//            t3v.setTextColor(Color.BLACK);
+//            t3v.setGravity(Gravity.CENTER);
+//            tbrow.addView(t3v);
+//            TextView t4v = new TextView(this);
+//            t4v.setText("" + i * 15 / 32 * 10);
+//            t4v.setTextColor(Color.BLACK);
+//            t4v.setGravity(Gravity.CENTER);
+//            tbrow.addView(t4v);
+//            stk.addView(tbrow);
         }
 
 

@@ -76,5 +76,7 @@ public class Main {
         });
         NumberOfNews = News.size();
         System.out.println(NumberOfNews);
+
+        System.out.println(News.entrySet().toArray()[0].toString().split("=")[1]);
     }
 }

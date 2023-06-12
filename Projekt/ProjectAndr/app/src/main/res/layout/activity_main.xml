@@ -8,14 +8,14 @@
 
     <TextView
         android:id="@+id/TitleTextView"
-        android:layout_width="239dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="25dp"
+        android:layout_width="252dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:text="KRAKÓW NEWS"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -58,11 +58,11 @@
 
     <TextView
         android:id="@+id/LogsTextView"
-        android:layout_width="400dp"
-        android:layout_height="80dp"
+        android:layout_width="401dp"
+        android:layout_height="67dp"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="64dp"
         android:gravity="left"
         android:text="Logs"
         android:textSize="18sp"
@@ -70,34 +70,53 @@
         app:layout_constraintEnd_toEndOf="@+id/WebsiteTextView"
         app:layout_constraintStart_toStartOf="@+id/WebsiteTextView" />
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="399dp"
-        android:layout_height="454dp"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="400dp"
+        android:layout_height="450dp"
         android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="140dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TitleTextView">
 
-<!--        <TableRow-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-<!--        <TableRow-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent" />-->
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="400dp"
+                android:layout_height="700dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginBottom="130dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TitleTextView"></TableLayout>
+        </LinearLayout>
+    </ScrollView>
 
-<!--        <TableRow-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent" />-->
 
-<!--        <TableRow-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent" />-->
-    </TableLayout>
+    <!--        <TableRow-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent" />-->
+
+    <!--        <TableRow-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent" />-->
+
+    <!--        <TableRow-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent" />-->
+
+    <!--        <TableRow-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
