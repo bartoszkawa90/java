@@ -20,6 +20,7 @@ public class Main {
     static List<String> Links = new ArrayList<>();
 
     static List<String > Headlines = new ArrayList<>();
+    static int NumberOfNews;
 
     static Map<String, String > News = new HashMap<String, String >();
 
@@ -45,6 +46,7 @@ public class Main {
                 if (!Links.contains(link) && !link.equals("")){ Links.add(link); }
                 if (!Headlines.contains(headline) && !headline.equals("") && headline.split(" ", 50).length > 1) { Headlines.add(headline); }
             }
+
         }
         catch(IOException e)
         {
@@ -72,5 +74,7 @@ public class Main {
         News.forEach((k,v) -> {
             System.out.println("Headline : " + k + "\nLink : " + v);
         });
+        NumberOfNews = News.size();
+        System.out.println(NumberOfNews);
     }
 }
