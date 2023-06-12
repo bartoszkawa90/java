@@ -21,6 +21,9 @@ public class WebNews implements Runnable {
     static List<String > Headlines = new ArrayList<>();
     static Map<String, String > News = new HashMap();
 
+    static int numberOfArticles;
+    static boolean informationCollected;
+
     WebNews(){
         title = "";
     }
@@ -62,6 +65,8 @@ public class WebNews implements Runnable {
                     }
                 }
             }
+            numberOfArticles = News.size();
+            informationCollected = true;
         }
         catch(IOException e)
         {
@@ -74,10 +79,12 @@ public class WebNews implements Runnable {
     public void run(){
         // Wątek zbierający informacje odświerzany co 10s
         while(true){
-            try {
-                Thread.sleep(30000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            if(informationCollected) {
+                try {
+                    Thread.sleep(30000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
             collectNews();
         }

@@ -8,13 +8,14 @@
 
     <TextView
         android:id="@+id/TitleTextView"
-        android:layout_width="207dp"
-        android:layout_height="43dp"
+        android:layout_width="239dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="25dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:text="KRAKÓW NEWS"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,11 +26,12 @@
         android:layout_width="350dp"
         android:layout_height="30dp"
         android:layout_marginStart="31dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="31dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="1dp"
         android:gravity="left"
         android:text="News"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/LogsTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -56,16 +58,46 @@
 
     <TextView
         android:id="@+id/LogsTextView"
-        android:layout_width="350dp"
-        android:layout_height="120dp"
+        android:layout_width="400dp"
+        android:layout_height="80dp"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="72dp"
         android:gravity="left"
         android:text="Logs"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/WebsiteTextView"
         app:layout_constraintStart_toStartOf="@+id/WebsiteTextView" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="399dp"
+        android:layout_height="454dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleTextView">
+
+<!--        <TableRow-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
+
+<!--        <TableRow-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
+
+<!--        <TableRow-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
+
+<!--        <TableRow-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
+    </TableLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
