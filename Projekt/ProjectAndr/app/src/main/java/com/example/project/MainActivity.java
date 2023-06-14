@@ -19,6 +19,15 @@ public class MainActivity extends AppCompatActivity {
 
     Button ExitButton,ReloadButton;
 
+//    public static String fix(String head, String link){
+//        int maxLength = 60;
+//        char[] charHead = head.toCharArray();
+//        if ( head.length() >= maxLength ){
+//            for(int i=0; i< (int) head.length()/maxLength; i++){
+//
+//            }
+//        }
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
         stk.addView(tbrow0);
 
         for (int i = 0; i < WebNews.numberOfArticles; i++) {
-            String head = WebNews.News.entrySet().toArray()[i].toString().split("=")[0] + "\n";
-            String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
+            String head = Integer.toString(i+1) + " : " + WebNews.News.entrySet().toArray()[i].toString().split("=")[0];
+            String link = Integer.toString(i+1) + " : " + WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
 
             TextView Logs = (TextView)findViewById(R.id.LogsTextView);
             if(i == WebNews.numberOfArticles-1) { Logs.setText(head); }
@@ -93,11 +102,11 @@ public class MainActivity extends AppCompatActivity {
             headline1.setTextSize(14);
             tbrow.addView(headline1);
 
-            TextView link1 = new TextView(this);
-            link1.setText(link);
-            link1.setTextColor(Color.BLACK);
-            link1.setTextSize(14);
-            tbrow.addView(link1);
+//            TextView link1 = new TextView(this);
+//            link1.setText(link);
+//            link1.setTextColor(Color.BLACK);
+//            link1.setTextSize(14);
+//            tbrow.addView(link1);
             stk.addView(tbrow);
         }
     }
