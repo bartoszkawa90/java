@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import java.util.concurrent.TimeUnit;
 
 import java.util.Map;
 
@@ -44,54 +45,71 @@ public class MainActivity extends AppCompatActivity {
 
                 TextView NewsTextView = (TextView)findViewById(R.id.WebsiteTextView);
                 NewsTextView.setText(title);
+
+//                TextView Logs = (TextView)findViewById(R.id.LogsTextView);
+//                Logs.setText(WebNews.numberOfArticles+"");
             }
         });
 
+        // Start Thread for collecting news
         Thread CollectingNewsThread = new Thread(new WebNews());
         CollectingNewsThread.start();
 
-            TableLayout stk = (TableLayout) findViewById(R.id.tableLayout);
-            TableRow tbrow0 = new TableRow(this);
-            TextView tv0 = new TextView(this);
-            tv0.setText("               Article Title ");
-            tv0.setTextColor(Color.BLACK);
-            tv0.setTextSize(18);
-            tbrow0.addView(tv0);
+        // Thread main starts 10s after collecting news
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
 
-            TextView tv1 = new TextView(this);
-            tv1.setText("                   Link ");
-            tv1.setTextColor(Color.BLACK);
-            tv1.setTextSize(18);
-            tbrow0.addView(tv1);
-            stk.addView(tbrow0);
+        // Table
+        TableLayout stk = (TableLayout) findViewById(R.id.tableLayout);
+        TableRow tbrow0 = new TableRow(this);
+        TextView tv0 = new TextView(this);
+        tv0.setText("               Article Title ");
+        tv0.setTextColor(Color.BLACK);
+        tv0.setTextSize(18);
+        tbrow0.addView(tv0);
+
+        TextView tv1 = new TextView(this);
+        tv1.setText("                   Link ");
+        tv1.setTextColor(Color.BLACK);
+        tv1.setTextSize(18);
+        tbrow0.addView(tv1);
+        stk.addView(tbrow0);
+
+        for (int i = 0; i < WebNews.numberOfArticles; i++) {
+            String head = WebNews.News.entrySet().toArray()[i].toString().split("=")[0] + "\n";
+            String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
+
+            TextView Logs = (TextView)findViewById(R.id.LogsTextView);
+            if(i == WebNews.numberOfArticles-1) { Logs.setText(head); }
+
+            TableRow tbrow = new TableRow(this);
+            TextView headline1 = new TextView(this);
+            headline1.setText(head);
+            headline1.setTextColor(Color.BLACK);
+            headline1.setTextSize(14);
+            tbrow.addView(headline1);
+
+            TextView link1 = new TextView(this);
+            link1.setText(link);
+            link1.setTextColor(Color.BLACK);
+            link1.setTextSize(14);
+            tbrow.addView(link1);
+            stk.addView(tbrow);
+        }
+    }
 
 
-            for (int i = 0; i < WebNews.numberOfArticles; i++) {
-                String head = WebNews.News.entrySet().toArray()[i].toString().split("=")[0];
-                String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
-
-                TableRow tbrow = new TableRow(this);
-                TextView headline1 = new TextView(this);
-                headline1.setText(head);
-                headline1.setTextColor(Color.BLACK);
-                headline1.setTextSize(14);
-                tbrow.addView(headline1);
-
-                TextView link1 = new TextView(this);
-                link1.setText(link);
-                link1.setTextColor(Color.BLACK);
-                link1.setTextSize(14);
-                tbrow.addView(link1);
-                stk.addView(tbrow);
-//
-//
 //            TableRow tbrow = new TableRow(this);
 //            TextView t1v = new TextView(this);
 //            t1v.setText("" + i);
 //            t1v.setTextColor(Color.BLACK);
 //            t1v.setGravity(Gravity.CENTER);
 //            tbrow.addView(t1v);
-
+//
 //            TextView t2v = new TextView(this);
 //            t2v.setText("Product " + i);
 //            t2v.setTextColor(Color.BLACK);
@@ -108,8 +126,7 @@ public class MainActivity extends AppCompatActivity {
 //            t4v.setGravity(Gravity.CENTER);
 //            tbrow.addView(t4v);
 //            stk.addView(tbrow);
-        }
+//        }
 
 
-    }
 }
