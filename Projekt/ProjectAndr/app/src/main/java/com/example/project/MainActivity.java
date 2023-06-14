@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button ExitButton,ReloadButton;
+    public Button ExitButton,ReloadButton,ViewAllArticlesButton;
     public static int I;
 
     @Override
@@ -41,6 +41,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
                 System.exit(0);
+            }
+        });
+        // View all articles // New window Button
+        this.ViewAllArticlesButton = (Button) this.findViewById(R.id.ViewAllArticles);
+        this.ViewAllArticlesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent articlesWindow = new Intent(MainActivity.this, ArticlesWindow.class);
+
+
             }
         });
         // Reload button action
