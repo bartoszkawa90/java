@@ -17,6 +17,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -72,36 +73,29 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="400dp"
+        android:layout_width="399dp"
         android:layout_height="450dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TitleTextView">
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical">-->
-        <HorizontalScrollView
-            android:layout_width="1000dp" android:layout_height="fill_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <TableLayout
-                android:id="@+id/tableLayout"
-                android:layout_width="1000dp"
-                android:layout_height="1200dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginEnd="1dp"
-                android:layout_marginBottom="130dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TitleTextView"></TableLayout>
-<!--        </LinearLayout>-->
-        </HorizontalScrollView>
+            <TextView
+                android:id="@+id/ArticlesTextView"
+                android:layout_width="match_parent"
+                android:layout_height="2200dp"
+                android:text="\n"
+                android:textSize="18sp"></TextView>
+
+        </LinearLayout>
     </ScrollView>
 
 
