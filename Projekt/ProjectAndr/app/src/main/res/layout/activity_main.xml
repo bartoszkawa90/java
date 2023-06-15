@@ -8,14 +8,14 @@
 
     <TextView
         android:id="@+id/TitleTextView"
-        android:layout_width="252dp"
-        android:layout_height="52dp"
+        android:layout_width="261dp"
+        android:layout_height="41dp"
         android:layout_marginBottom="32dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:text="KRAKÓW NEWS"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,16 +29,13 @@
         android:layout_marginStart="31dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="31dp"
-        android:layout_marginBottom="1dp"
         android:gravity="center"
         android:text="Website"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/LogsTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TitleTextView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/TitleTextView" />
 
     <Button
         android:id="@+id/ExitButton"
@@ -58,26 +55,26 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ExitButton" />
 
-    <TextView
-        android:id="@+id/LogsTextView"
-        android:layout_width="401dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="65dp"
-        android:gravity="left"
-        android:text="Logs"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/WebsiteTextView"
-        app:layout_constraintStart_toStartOf="@+id/WebsiteTextView" />
+    <!--        <TextView-->
+    <!--        android:id="@+id/LogsTextView"-->
+    <!--        android:layout_width="401dp"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        android:layout_marginStart="4dp"-->
+    <!--        android:layout_marginEnd="4dp"-->
+    <!--        android:layout_marginBottom="65dp"-->
+    <!--        android:gravity="left"-->
+    <!--        android:text="Logs"-->
+    <!--        android:textSize="18sp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/WebsiteTextView"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/WebsiteTextView" />-->
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollView1"
         android:layout_width="399dp"
-        android:layout_height="0dp"
+        android:layout_height="428dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="85dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="107dp"
         app:layout_constraintBottom_toTopOf="@+id/ViewAllArticles"
@@ -93,7 +90,7 @@
             <TextView
                 android:id="@+id/ArticlesTextView"
                 android:layout_width="match_parent"
-                android:layout_height="2200dp"
+                android:layout_height="match_parent"
                 android:text="\n"
                 android:textSize="18sp"></TextView>
 
@@ -101,35 +98,54 @@
     </ScrollView>
 
 
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="402dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/ViewAllArticles"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/LogsTextView"
+                android:layout_width="401dp"
+                android:layout_height="300dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="65dp"
+                android:gravity="left"
+                android:text="Logs"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/WebsiteTextView"
+                app:layout_constraintStart_toStartOf="@+id/WebsiteTextView" />
+
+        </LinearLayout>
+    </ScrollView>
+
     <Button
         android:id="@+id/ViewAllArticles"
-        android:layout_width="150dp"
+        android:layout_width="160dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="165dp"
         android:layout_marginBottom="16dp"
         android:text="ViewAllArticles"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ExitButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
-
-
-    <!--        <TableRow-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent" />-->
-
-    <!--        <TableRow-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent" />-->
-
-    <!--        <TableRow-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent" />-->
-
-    <!--        <TableRow-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent" />-->
-
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

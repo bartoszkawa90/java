@@ -27,12 +27,25 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     public Button ExitButton,ReloadButton,ViewAllArticlesButton;
+    public static TextView logsTextView;
     public static int I;
+
+    public static void Delay(int seconds){
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Logs text View
+        logsTextView = (TextView) this.findViewById(R.id.LogsTextView);
 
         // Exit button action
         this.ExitButton = (Button) this.findViewById(R.id.ExitButton);
@@ -64,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView NewsTextView = (TextView) findViewById(R.id.WebsiteTextView);
                 NewsTextView.setText(title);
 
-
+                Delay(1);
                 TextView articles = (TextView) findViewById(R.id.ArticlesTextView);
                 articles.setText("");
 
@@ -94,30 +107,29 @@ public class MainActivity extends AppCompatActivity {
                     };
 
                     spannableString.setSpan(span1, 1, head.length() + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    if (articles.getLineCount() * articles.getLineHeight() > articles.getHeight()) {
+                        articles.setHeight((articles.getLineCount() + 2) * articles.getLineHeight());
+                    }
                     articles.append(spannableString);
                     articles.append("\n\n");
                     articles.setMovementMethod(LinkMovementMethod.getInstance());
-
-
+                    if (I == WebNews.numberOfArticles) { I = 0; }
                 }
             }
         });
 
         // Zacznij zbierac informacje i zaczekajz głównym wątkiem
         Thread CollectingNewsThread = new Thread(new WebNews());
+//        Thread Logs = new Thread(new Logs(logsTextView));
         CollectingNewsThread.start();
-        try {
-            TimeUnit.SECONDS.sleep(3);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
+        Delay(3);
 
         TextView articles = (TextView) findViewById(R.id.ArticlesTextView);
+        articles.setText("");
 
         for ( int i=0; i<WebNews.numberOfArticles; i++){
-            String head = WebNews.News.entrySet().toArray()[I].toString().split("=")[0];
-            String link = WebNews.News.entrySet().toArray()[I].toString().split("=")[1];
+            String head = WebNews.News.entrySet().toArray()[i].toString().split("=")[0];
+            String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
             I = i;
 
             SpannableString spannableString = new SpannableString(
@@ -144,37 +156,9 @@ public class MainActivity extends AppCompatActivity {
             articles.append(spannableString);
             articles.append("\n\n");
             articles.setMovementMethod(LinkMovementMethod.getInstance());
-            if (I == WebNews.numberOfArticles-1) { I = 0; }
+            if (I == WebNews.numberOfArticles) { I = 0; }
 
         }
-
-
-
-//        TextView articles = (TextView) findViewById(R.id.ArticlesTextView);
-//
-//        SpannableString spannableString = new SpannableString(
-//                WebNews.News.entrySet().toArray()[0].toString().split("=")[0]
-//        );
-//
-//        ClickableSpan span1 = new ClickableSpan() {
-//            @Override
-//            public void onClick(@NonNull View view) {
-//                Intent intent = new Intent(Intent.ACTION_VIEW,
-//                        Uri.parse(WebNews.News.entrySet().toArray()[0].toString().split("=")[1]));
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                startActivity(intent);
-//            }
-//
-//            @Override
-//            public void updateDrawState(@NonNull TextPaint ds) {
-//                ds.setColor(Color.BLUE);
-//                ds.setUnderlineText(false);
-//            }
-//        };
-//
-//        spannableString.setSpan(span1, 9, 15, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        articles.setText(spannableString);
-//        articles.setMovementMethod(LinkMovementMethod.getInstance());
 
     }
 }
