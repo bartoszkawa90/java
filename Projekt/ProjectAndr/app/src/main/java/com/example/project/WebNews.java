@@ -81,7 +81,7 @@ public class WebNews implements Runnable {
         while(true){
             if(informationCollected) {
                 try {
-                    Thread.sleep(30000);
+                    Thread.sleep(20000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }

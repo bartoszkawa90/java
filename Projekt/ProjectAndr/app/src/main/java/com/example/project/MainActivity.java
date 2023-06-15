@@ -47,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
         // Logs text View
         logsTextView = (TextView) this.findViewById(R.id.LogsTextView);
 
+        // Setup background color
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(Color.BLACK);
+
         // Exit button action
         this.ExitButton = (Button) this.findViewById(R.id.ExitButton);
         this.ExitButton.setOnClickListener(new View.OnClickListener() {
@@ -62,8 +66,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent articlesWindow = new Intent(MainActivity.this, ArticlesWindow.class);
-
-
+                startActivity(articlesWindow);
             }
         });
         // Reload button action
@@ -101,12 +104,14 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void updateDrawState(@NonNull TextPaint ds) {
-                            ds.setColor(Color.BLUE);
+                            ds.setColor(Color.YELLOW);
                             ds.setUnderlineText(false);
                         }
                     };
 
-                    spannableString.setSpan(span1, 1, head.length() + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    spannableString.setSpan(span1, 1,
+                            spannableString.length(),
+                            Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
                     if (articles.getLineCount() * articles.getLineHeight() > articles.getHeight()) {
                         articles.setHeight((articles.getLineCount() + 2) * articles.getLineHeight());
                     }
@@ -147,12 +152,17 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void updateDrawState(@NonNull TextPaint ds) {
-                    ds.setColor(Color.BLUE);
+                    ds.setColor(Color.YELLOW);
                     ds.setUnderlineText(false);
                 }
             };
 
-            spannableString.setSpan(span1, 1, head.length() + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(span1, 1,
+                    spannableString.length(),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            if (articles.getLineCount() * articles.getLineHeight() > articles.getHeight()) {
+                articles.setHeight((articles.getLineCount() + 2) * articles.getLineHeight());
+            }
             articles.append(spannableString);
             articles.append("\n\n");
             articles.setMovementMethod(LinkMovementMethod.getInstance());

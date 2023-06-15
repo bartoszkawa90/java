@@ -54,6 +54,26 @@ public class Main {
         }
     }
 
+    public static void showArticleText(){
+        for (int i=0; i<1; i++){
+            String link = News.entrySet().toArray()[i].toString().split("=")[1];
+            try{
+                Document doc = Jsoup.connect(link).get();
+                Elements articles = doc.select("p");
+
+                for ( Element ele : articles){
+                    System.out.println(ele.text());
+//                    Document art = Jsoup.parse(String.valueOf(ele));
+//                    String headline = art.getAllElements().attr("content");
+//                    System.out.println(headline);
+                }
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     public static void main(String[] args) {
         collectNews();
@@ -71,12 +91,17 @@ public class Main {
                 }
             }
         }
-        News.forEach((k,v) -> {
-            System.out.println("Headline : " + k + "\nLink : " + v);
-        });
-        NumberOfNews = News.size();
-        System.out.println(NumberOfNews);
+//        News.forEach((k,v) -> {
+//            System.out.println("Headline : " + k + "\nLink : " + v);
+//        });
+//        NumberOfNews = News.size();
+//        System.out.println(NumberOfNews);
 
-        System.out.println(News.entrySet().toArray()[0].toString().split("=")[1]);
+//        System.out.println(News.entrySet().toArray()[0].toString().split("=")[1]);
+
+        showArticleText();
+
+
+
     }
 }
