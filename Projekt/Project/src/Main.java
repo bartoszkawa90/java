@@ -60,12 +60,10 @@ public class Main {
             try{
                 Document doc = Jsoup.connect(link).get();
                 Elements articles = doc.select("p");
+                System.out.println(link);
 
                 for ( Element ele : articles){
                     System.out.println(ele.text());
-//                    Document art = Jsoup.parse(String.valueOf(ele));
-//                    String headline = art.getAllElements().attr("content");
-//                    System.out.println(headline);
                 }
             }
             catch (Exception e){
