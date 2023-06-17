@@ -55,16 +55,17 @@ public class Main {
     }
 
     public static void showArticleText(){
-        for (int i=0; i<1; i++){
+        for (int i=0; i<News.size(); i++){
             String link = News.entrySet().toArray()[i].toString().split("=")[1];
             try{
                 Document doc = Jsoup.connect(link).get();
                 Elements articles = doc.select("p");
-                System.out.println(link);
-
-                for ( Element ele : articles){
-                    System.out.println(ele.text());
-                }
+//                System.out.println(link);
+                System.out.println(articles.size());
+//                for ( Element ele : articles){
+//                    System.out.println(ele.text());
+//                }
+//                System.out.println(" ");
             }
             catch (Exception e){
                 e.printStackTrace();
@@ -76,8 +77,8 @@ public class Main {
     public static void main(String[] args) {
         collectNews();
 
-        System.out.println(Links.size());
-        System.out.println(Headlines.size() + "\n");
+//        System.out.println(Links.size());
+//        System.out.println(Headlines.size() + "\n");
 
         for(String headline : Headlines){
             String headFrag = unaccent(headline.split(" ", 50)[0] + "-" +
