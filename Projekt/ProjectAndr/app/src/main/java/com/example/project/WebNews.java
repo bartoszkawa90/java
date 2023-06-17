@@ -17,10 +17,10 @@ import java.util.Map;
 public class WebNews implements Runnable {
 
     public static String title;
-    static List<String> Links = new ArrayList<>();
-    static List<String > Headlines = new ArrayList<>();
-    static Map<String, String > News = new HashMap();
-
+    public static List<String> Links = new ArrayList<>();
+    public static List<String > Headlines = new ArrayList<>();
+    public static Map<String, String > News = new HashMap();
+    public static String articlesText;
     static int numberOfArticles;
     static boolean informationCollected;
 
@@ -67,6 +67,24 @@ public class WebNews implements Runnable {
             }
             numberOfArticles = News.size();
             informationCollected = true;
+            //--------------------------------------------------------------------------------------
+            articlesText = " ";
+            for (int i=0; i<WebNews.News.size(); i++){
+                String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
+                try{
+                    Document doc1 = Jsoup.connect(link).get();
+                    Elements arts = doc1.select("p");
+
+                    articlesText += (i+1) + ". ";
+                    for ( Element ele : arts){
+                        articlesText += ele.text();
+                    }
+                    articlesText += "\n\n";
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
         }
         catch(IOException e)
         {
