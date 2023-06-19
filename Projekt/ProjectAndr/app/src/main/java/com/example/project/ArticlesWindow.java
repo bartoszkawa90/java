@@ -2,7 +2,11 @@ package com.example.project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.os.Bundle;
+import android.view.Display;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.jsoup.Jsoup;
@@ -17,9 +21,8 @@ public class ArticlesWindow extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_articles_window);
 
-//      plot news
+        // setup articles in textview
         TextView articlesTextView = (TextView) this.findViewById(R.id.ArticlesTextView);
-        articlesTextView.setText("");
         articlesTextView.setText(WebNews.articlesText);
 
     }

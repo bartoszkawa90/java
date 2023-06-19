@@ -23,13 +23,11 @@
 
     <ScrollView
         android:id="@+id/scrollView1"
-        android:layout_width="407dp"
-        android:layout_height="551dp"
+        android:layout_width="406dp"
+        android:layout_height="722dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="29dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,25 +41,25 @@
             <TextView
                 android:id="@+id/ArticlesTextView"
                 android:layout_width="match_parent"
-                android:layout_height="2200dp"
+                android:layout_height="wrap_content"
                 android:text="\n"
                 android:textSize="18sp"></TextView>
 
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="110dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/AllArticlesTitle"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView1" />
+<!--    <Button-->
+<!--        android:id="@+id/Buttonn"-->
+<!--        android:layout_width="110dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:text="Button"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/AllArticlesTitle"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/scrollView1" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
