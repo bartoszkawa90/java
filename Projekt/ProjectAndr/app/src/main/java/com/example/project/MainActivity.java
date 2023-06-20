@@ -27,7 +27,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     public Button ExitButton,ReloadButton,ViewAllArticlesButton;
-    public static TextView logsTextView;
+    public static TextView logsTextView, websiteTitle, articles;
     public static int I;
 
     public static void Delay(int seconds){
@@ -44,8 +44,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Logs text View
+        // TextViews
         logsTextView = (TextView) this.findViewById(R.id.LogsTextView);
+        websiteTitle = (TextView) findViewById(R.id.WebsiteTextView);
+        articles = (TextView) findViewById(R.id.ArticlesTextView);
 
         // Setup background color
         View view = this.getWindow().getDecorView();
@@ -77,11 +79,9 @@ public class MainActivity extends AppCompatActivity {
                 String title = WebNews.getTitle();
                 Map<String, String> News = WebNews.getSetOfNews();
 
-                TextView NewsTextView = (TextView) findViewById(R.id.WebsiteTextView);
-                NewsTextView.setText(title);
+                websiteTitle.setText(title);
 
                 Delay(1);
-                TextView articles = (TextView) findViewById(R.id.ArticlesTextView);
                 articles.setText("");
 
                 for ( int i=0; i<WebNews.numberOfArticles; i++){
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         CollectingNewsThread.start();
         Delay(3);
 
-        TextView articles = (TextView) findViewById(R.id.ArticlesTextView);
+        websiteTitle.setText(WebNews.getTitle());
         articles.setText("");
 
         for ( int i=0; i<WebNews.numberOfArticles; i++){

@@ -3,6 +3,7 @@ package com.example.project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActionBar;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
@@ -20,6 +21,10 @@ public class ArticlesWindow extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_articles_window);
+
+        // Setup background color
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(Color.BLACK);
 
         // setup articles in textview
         TextView articlesTextView = (TextView) this.findViewById(R.id.ArticlesTextView);
