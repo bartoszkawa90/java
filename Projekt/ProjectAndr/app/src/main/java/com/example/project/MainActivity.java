@@ -85,12 +85,12 @@ public class MainActivity extends AppCompatActivity {
                 articles.setText("");
 
                 for ( int i=0; i<WebNews.numberOfArticles; i++){
-                    String head = WebNews.News.entrySet().toArray()[I].toString().split("=")[0];
-                    String link = WebNews.News.entrySet().toArray()[I].toString().split("=")[1];
+                    String head = WebNews.News.entrySet().toArray()[i].toString().split("=")[0];
+                    String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
                     I = i;
 
                     SpannableString spannableString = new SpannableString(
-                            (I+1) + " : " + head
+                            (i+1) + " : " + head
                     );
 
                     ClickableSpan span1 = new ClickableSpan() {
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
             I = i;
 
             SpannableString spannableString = new SpannableString(
-                    (I+1) + " : " + head
+                    (i+1) + " : " + head
             );
 
             ClickableSpan span1 = new ClickableSpan() {

@@ -69,8 +69,8 @@ public class WebNews implements Runnable {
             informationCollected = true;
             //--------------------------------------------------------------------------------------
             articlesText = " ";
-            for (int i=0; i<WebNews.News.size(); i++){
-                String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
+            for (int i=0; i<News.size(); i++){
+                String link = News.entrySet().toArray()[i].toString().split("=")[1];
                 try{
                     Document doc1 = Jsoup.connect(link).get();
                     Elements arts = doc1.select("p");
