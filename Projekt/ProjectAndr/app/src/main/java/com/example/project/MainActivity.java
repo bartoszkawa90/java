@@ -19,9 +19,16 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
 import java.util.Map;
+
+// Do logów
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public Button ExitButton,ReloadButton,ViewAllArticlesButton;
     public static TextView logsTextView, websiteTitle, articles;
     public static int I;
+    public static final Logger Log = Logger.getLogger(MainActivity.class.getName());
 
     public static void Delay(int seconds){
         try {
@@ -123,9 +131,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Logs
+
+        Logger.getLogger("").setLevel(Level.ALL);
+        Log.info(" Logger works ");
+
+        try {
+            Process process = Runtime.getRuntime().exec("logcat -d");
+
+            BufferedReader bufferedReader = new BufferedReader(
+
+                    new InputStreamReader(process.getInputStream()));
+
+            StringBuilder log=new StringBuilder();
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                log.append(line);
+            }
+            TextView textViewLog = (TextView)findViewById(R.id.LogsTextView);
+            textViewLog.setText(log.toString() + "\n\n");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
         // Zacznij zbierac informacje i zaczekajz głównym wątkiem
         Thread CollectingNewsThread = new Thread(new WebNews());
-//        Thread Logs = new Thread(new Logs(logsTextView));
         CollectingNewsThread.start();
         Delay(3);
 

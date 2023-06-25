@@ -123,8 +123,8 @@
 
             <TextView
                 android:id="@+id/LogsTextView"
-                android:layout_width="401dp"
-                android:layout_height="300dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="65dp"
