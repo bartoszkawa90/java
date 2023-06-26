@@ -22,6 +22,7 @@ public class ArticlesWindow extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_articles_window);
 
+        MainActivity.Log.info("Mine info : Articles window opened ");
         // Setup background color
         View view = this.getWindow().getDecorView();
         view.setBackgroundColor(Color.BLACK);

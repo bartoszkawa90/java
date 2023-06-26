@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -21,12 +22,14 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
 import java.util.Map;
 
 // Do logów
+import java.util.logging.Handler;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -36,7 +39,26 @@ public class MainActivity extends AppCompatActivity {
     public Button ExitButton,ReloadButton,ViewAllArticlesButton;
     public static TextView logsTextView, websiteTitle, articles;
     public static int I;
+    public static String Tag = " Mine ";
     public static final Logger Log = Logger.getLogger(MainActivity.class.getName());
+    public static void Logging(String tag){
+        try {
+            Process process = Runtime.getRuntime().exec("logcat -d");
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+            StringBuilder log = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                if (line.contains(tag)){
+                    log.append(line).append("\n\n");
+                }
+            }
+            MainActivity.Log.info("Mine info : Logs collected from logger ");
+            logsTextView.setText(log.toString());
+        } catch (IOException e) {
+            MainActivity.Log.severe("Mine exception : Failed to collect logs ");
+        }
+    }
 
     public static void Delay(int seconds){
         try {
@@ -52,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        clearLogs();
         // TextViews
         logsTextView = (TextView) this.findViewById(R.id.LogsTextView);
         websiteTitle = (TextView) findViewById(R.id.WebsiteTextView);
@@ -66,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         this.ExitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.Log.info("Mine info : Exiting application ");
                 finish();
                 System.exit(0);
             }
@@ -75,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         this.ViewAllArticlesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.Log.info("Mine info : Entering new window to view all articles ");
                 Intent articlesWindow = new Intent(MainActivity.this, ArticlesWindow.class);
                 startActivity(articlesWindow);
             }
@@ -84,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
         this.ReloadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.Log.info("Mine info : Reloading logs and information ");
+                Logging(Tag);
                 String title = WebNews.getTitle();
                 Map<String, String> News = WebNews.getSetOfNews();
 
@@ -92,117 +119,183 @@ public class MainActivity extends AppCompatActivity {
                 Delay(1);
                 articles.setText("");
 
-                for ( int i=0; i<WebNews.numberOfArticles; i++){
-                    String head = WebNews.News.entrySet().toArray()[i].toString().split("=")[0];
-                    String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
-                    I = i;
+                try{
+                    for ( int i=0; i<WebNews.numberOfArticles; i++){
+                        String head = WebNews.News.entrySet().toArray()[i].toString().split("=")[0];
+                        String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
+                        I = i;
 
-                    SpannableString spannableString = new SpannableString(
-                            (i+1) + " : " + head
-                    );
+                        SpannableString spannableString = new SpannableString(
+                                (i+1) + " : " + head
+                        );
 
-                    ClickableSpan span1 = new ClickableSpan() {
-                        @Override
-                        public void onClick(@NonNull View view) {
-                            Intent intent = new Intent(Intent.ACTION_VIEW,
-                                    Uri.parse(link));
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
+                        ClickableSpan span1 = new ClickableSpan() {
+                            @Override
+                            public void onClick(@NonNull View view) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW,
+                                        Uri.parse(link));
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void updateDrawState(@NonNull TextPaint ds) {
+                                ds.setColor(Color.YELLOW);
+                                ds.setUnderlineText(false);
+                            }
+                        };
+
+                        spannableString.setSpan(span1, 1,
+                                spannableString.length(),
+                                Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+                        if (articles.getLineCount() * articles.getLineHeight() > articles.getHeight()) {
+                            articles.setHeight((articles.getLineCount() + 2) * articles.getLineHeight());
                         }
-
-                        @Override
-                        public void updateDrawState(@NonNull TextPaint ds) {
-                            ds.setColor(Color.YELLOW);
-                            ds.setUnderlineText(false);
-                        }
-                    };
-
-                    spannableString.setSpan(span1, 1,
-                            spannableString.length(),
-                            Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-                    if (articles.getLineCount() * articles.getLineHeight() > articles.getHeight()) {
-                        articles.setHeight((articles.getLineCount() + 2) * articles.getLineHeight());
+                        articles.append(spannableString);
+                        articles.append("\n\n");
+                        articles.setMovementMethod(LinkMovementMethod.getInstance());
+                        if (I == WebNews.numberOfArticles) { I = 0; }
                     }
-                    articles.append(spannableString);
-                    articles.append("\n\n");
-                    articles.setMovementMethod(LinkMovementMethod.getInstance());
-                    if (I == WebNews.numberOfArticles) { I = 0; }
                 }
+                catch (java.lang.ArrayIndexOutOfBoundsException e){
+                    MainActivity.Log.severe("Main exception : Failed to extracted News to " +
+                            "TextView");
+                }
+
+//                for ( int i=0; i<WebNews.numberOfArticles; i++){
+//                    String head = WebNews.News.entrySet().toArray()[i].toString().split("=")[0];
+//                    String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
+//                    I = i;
+//
+//                    SpannableString spannableString = new SpannableString(
+//                            (i+1) + " : " + head
+//                    );
+//
+//                    ClickableSpan span1 = new ClickableSpan() {
+//                        @Override
+//                        public void onClick(@NonNull View view) {
+//                            Intent intent = new Intent(Intent.ACTION_VIEW,
+//                                    Uri.parse(link));
+//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                            startActivity(intent);
+//                        }
+//
+//                        @Override
+//                        public void updateDrawState(@NonNull TextPaint ds) {
+//                            ds.setColor(Color.YELLOW);
+//                            ds.setUnderlineText(false);
+//                        }
+//                    };
+//
+//                    spannableString.setSpan(span1, 1,
+//                            spannableString.length(),
+//                            Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+//                    if (articles.getLineCount() * articles.getLineHeight() > articles.getHeight()) {
+//                        articles.setHeight((articles.getLineCount() + 2) * articles.getLineHeight());
+//                    }
+//                    articles.append(spannableString);
+//                    articles.append("\n\n");
+//                    articles.setMovementMethod(LinkMovementMethod.getInstance());
+//                    if (I == WebNews.numberOfArticles) { I = 0; }
+//                }
             }
         });
 
         // Logs
-
-        Logger.getLogger("").setLevel(Level.ALL);
-        Log.info(" Logger works ");
-
-        try {
-            Process process = Runtime.getRuntime().exec("logcat -d");
-
-            BufferedReader bufferedReader = new BufferedReader(
-
-                    new InputStreamReader(process.getInputStream()));
-
-            StringBuilder log=new StringBuilder();
-
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                log.append(line);
-            }
-            TextView textViewLog = (TextView)findViewById(R.id.LogsTextView);
-            textViewLog.setText(log.toString() + "\n\n");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
+        Logging(Tag);
+//        Thread Logs = new Thread(new Logs(MainActivity.class.getName(), Logi, ""));
+//        Logs.start();
+//        Delay(1);
 
         // Zacznij zbierac informacje i zaczekajz głównym wątkiem
         Thread CollectingNewsThread = new Thread(new WebNews());
         CollectingNewsThread.start();
+        MainActivity.Log.info("Mine info : Thread for collecting new started ");
         Delay(3);
 
         websiteTitle.setText(WebNews.getTitle());
         articles.setText("");
 
-        for ( int i=0; i<WebNews.numberOfArticles; i++){
-            String head = WebNews.News.entrySet().toArray()[i].toString().split("=")[0];
-            String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
-            I = i;
+        try{
+            for ( int i=0; i<WebNews.numberOfArticles; i++){
+                String head = WebNews.News.entrySet().toArray()[i].toString().split("=")[0];
+                String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
+                I = i;
 
-            SpannableString spannableString = new SpannableString(
-                    (i+1) + " : " + head
-            );
+                SpannableString spannableString = new SpannableString(
+                        (i+1) + " : " + head
+                );
 
-            ClickableSpan span1 = new ClickableSpan() {
-                @Override
-                public void onClick(@NonNull View view) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW,
-                            Uri.parse(link));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+                ClickableSpan span1 = new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull View view) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW,
+                                Uri.parse(link));
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void updateDrawState(@NonNull TextPaint ds) {
+                        ds.setColor(Color.YELLOW);
+                        ds.setUnderlineText(false);
+                    }
+                };
+
+                spannableString.setSpan(span1, 1,
+                        spannableString.length(),
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                if (articles.getLineCount() * articles.getLineHeight() > articles.getHeight()) {
+                    articles.setHeight((articles.getLineCount() + 2) * articles.getLineHeight());
                 }
+                articles.append(spannableString);
+                articles.append("\n\n");
+                articles.setMovementMethod(LinkMovementMethod.getInstance());
+                if (I == WebNews.numberOfArticles) { I = 0; }
 
-                @Override
-                public void updateDrawState(@NonNull TextPaint ds) {
-                    ds.setColor(Color.YELLOW);
-                    ds.setUnderlineText(false);
-                }
-            };
-
-            spannableString.setSpan(span1, 1,
-                    spannableString.length(),
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            if (articles.getLineCount() * articles.getLineHeight() > articles.getHeight()) {
-                articles.setHeight((articles.getLineCount() + 2) * articles.getLineHeight());
             }
-            articles.append(spannableString);
-            articles.append("\n\n");
-            articles.setMovementMethod(LinkMovementMethod.getInstance());
-            if (I == WebNews.numberOfArticles) { I = 0; }
-
+        }
+        catch (java.lang.ArrayIndexOutOfBoundsException e){
+            MainActivity.Log.severe("Main exception : Failed to extracted News to " +
+                    "TextView");
         }
 
+//        for ( int i=0; i<WebNews.numberOfArticles; i++){
+//            String head = WebNews.News.entrySet().toArray()[i].toString().split("=")[0];
+//            String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
+//            I = i;
+//
+//            SpannableString spannableString = new SpannableString(
+//                    (i+1) + " : " + head
+//            );
+//
+//            ClickableSpan span1 = new ClickableSpan() {
+//                @Override
+//                public void onClick(@NonNull View view) {
+//                    Intent intent = new Intent(Intent.ACTION_VIEW,
+//                            Uri.parse(link));
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    startActivity(intent);
+//                }
+//
+//                @Override
+//                public void updateDrawState(@NonNull TextPaint ds) {
+//                    ds.setColor(Color.YELLOW);
+//                    ds.setUnderlineText(false);
+//                }
+//            };
+//
+//            spannableString.setSpan(span1, 1,
+//                    spannableString.length(),
+//                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            if (articles.getLineCount() * articles.getLineHeight() > articles.getHeight()) {
+//                articles.setHeight((articles.getLineCount() + 2) * articles.getLineHeight());
+//            }
+//            articles.append(spannableString);
+//            articles.append("\n\n");
+//            articles.setMovementMethod(LinkMovementMethod.getInstance());
+//            if (I == WebNews.numberOfArticles) { I = 0; }
+//
+//        }
     }
 }
