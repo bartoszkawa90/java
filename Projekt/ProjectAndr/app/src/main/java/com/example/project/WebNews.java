@@ -45,7 +45,7 @@ public class WebNews implements Runnable {
             News.clear();
 
             Document doc = Jsoup.connect("https://krknews.pl/").get();
-            MainActivity.Log.info("Mine Info : Infortmation from website collected");
+            MainActivity.Log.info("Mine info : Infortmation from website collected");
             title = doc.title();
             Elements articles = doc.select("a");
 

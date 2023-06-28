@@ -10,10 +10,12 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -42,19 +44,42 @@ public class MainActivity extends AppCompatActivity {
     public static String Tag = " Mine ";
     public static final Logger Log = Logger.getLogger(MainActivity.class.getName());
     public static void Logging(String tag){
+//        try {
+//            Process process = Runtime.getRuntime().exec("logcat -d");
+//            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+//
+//            StringBuilder log = new StringBuilder();
+//            String line;
+//            while ((line = bufferedReader.readLine()) != null) {
+//                if (line.contains(tag)){
+//                    log.append(line).append("\n\n");
+//                }
+//            }
+//            MainActivity.Log.info("Mine info : Logs collected from logger ");
+//            logsTextView.setText(log.toString());
+//        } catch (IOException e) {
+//            MainActivity.Log.severe("Mine exception : Failed to collect logs ");
+//        }
         try {
             Process process = Runtime.getRuntime().exec("logcat -d");
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
-            StringBuilder log = new StringBuilder();
+            SpannableStringBuilder log = new SpannableStringBuilder();
+//            StringBuilder log = new StringBuilder();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 if (line.contains(tag)){
-                    log.append(line).append("\n\n");
+                    SpannableString text = new SpannableString(line);
+                    if(line.contains("info")){
+                        text.setSpan(new ForegroundColorSpan(Color.CYAN), 0, text.length(), 0);
+                    } else if (line.contains("exception")) {
+                        text.setSpan(new ForegroundColorSpan(Color.RED), 0, text.length(), 0);
+                    }
+                    log.append(text).append("\n\n");
                 }
             }
             MainActivity.Log.info("Mine info : Logs collected from logger ");
-            logsTextView.setText(log.toString());
+            logsTextView.setText(log);
         } catch (IOException e) {
             MainActivity.Log.severe("Mine exception : Failed to collect logs ");
         }
