@@ -186,43 +186,6 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.Log.severe("Main exception : Failed to extracted News to " +
                             "TextView");
                 }
-
-//                for ( int i=0; i<WebNews.numberOfArticles; i++){
-//                    String head = WebNews.News.entrySet().toArray()[i].toString().split("=")[0];
-//                    String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
-//                    I = i;
-//
-//                    SpannableString spannableString = new SpannableString(
-//                            (i+1) + " : " + head
-//                    );
-//
-//                    ClickableSpan span1 = new ClickableSpan() {
-//                        @Override
-//                        public void onClick(@NonNull View view) {
-//                            Intent intent = new Intent(Intent.ACTION_VIEW,
-//                                    Uri.parse(link));
-//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                            startActivity(intent);
-//                        }
-//
-//                        @Override
-//                        public void updateDrawState(@NonNull TextPaint ds) {
-//                            ds.setColor(Color.YELLOW);
-//                            ds.setUnderlineText(false);
-//                        }
-//                    };
-//
-//                    spannableString.setSpan(span1, 1,
-//                            spannableString.length(),
-//                            Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-//                    if (articles.getLineCount() * articles.getLineHeight() > articles.getHeight()) {
-//                        articles.setHeight((articles.getLineCount() + 2) * articles.getLineHeight());
-//                    }
-//                    articles.append(spannableString);
-//                    articles.append("\n\n");
-//                    articles.setMovementMethod(LinkMovementMethod.getInstance());
-//                    if (I == WebNews.numberOfArticles) { I = 0; }
-//                }
             }
         });
 
@@ -284,43 +247,5 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.Log.severe("Main exception : Failed to extracted News to " +
                     "TextView");
         }
-
-//        for ( int i=0; i<WebNews.numberOfArticles; i++){
-//            String head = WebNews.News.entrySet().toArray()[i].toString().split("=")[0];
-//            String link = WebNews.News.entrySet().toArray()[i].toString().split("=")[1];
-//            I = i;
-//
-//            SpannableString spannableString = new SpannableString(
-//                    (i+1) + " : " + head
-//            );
-//
-//            ClickableSpan span1 = new ClickableSpan() {
-//                @Override
-//                public void onClick(@NonNull View view) {
-//                    Intent intent = new Intent(Intent.ACTION_VIEW,
-//                            Uri.parse(link));
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    startActivity(intent);
-//                }
-//
-//                @Override
-//                public void updateDrawState(@NonNull TextPaint ds) {
-//                    ds.setColor(Color.YELLOW);
-//                    ds.setUnderlineText(false);
-//                }
-//            };
-//
-//            spannableString.setSpan(span1, 1,
-//                    spannableString.length(),
-//                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//            if (articles.getLineCount() * articles.getLineHeight() > articles.getHeight()) {
-//                articles.setHeight((articles.getLineCount() + 2) * articles.getLineHeight());
-//            }
-//            articles.append(spannableString);
-//            articles.append("\n\n");
-//            articles.setMovementMethod(LinkMovementMethod.getInstance());
-//            if (I == WebNews.numberOfArticles) { I = 0; }
-//
-//        }
     }
 }

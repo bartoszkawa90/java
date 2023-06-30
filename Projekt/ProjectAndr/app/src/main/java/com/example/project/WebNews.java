@@ -84,9 +84,11 @@ public class WebNews implements Runnable {
                         articlesText += ele.text();
                     }
                     articlesText += "\n\n";
+                    MainActivity.Log.info("Main info : Text of the articles collected ");
                 }
                 catch (Exception e){
-                    e.printStackTrace();
+                    MainActivity.Log.severe("Main exception : Failed to collect text of " +
+                            "Articles ");
                 }
             }
             MainActivity.Log.info("Mine info : Articles were formed ");
@@ -105,7 +107,7 @@ public class WebNews implements Runnable {
         while(true){
             if(informationCollected) {
                 try {
-                    Thread.sleep(20000);
+                    Thread.sleep(10000);
                 } catch (InterruptedException e) {
                     MainActivity.Log.severe("Mine exception : Failed to sleep WebNews Thread ");
                     throw new RuntimeException(e);
@@ -130,7 +132,7 @@ public class WebNews implements Runnable {
             return News;
         }
         catch (Exception e){
-            e.printStackTrace();
+//            e.printStackTrace();
             News.put("Brak Newsów", "Brak Newsów");
             MainActivity.Log.severe("Mine exception : Failed to get a set of News " +
                     "from WebNews ");
