@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(@NonNull View view) {
                                 Intent intent = new Intent(Intent.ACTION_VIEW,
-                                        Uri.parse(link));
+                                        Uri.parse(WebNews.News.entrySet().toArray()[I].toString().split("=")[1]));
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                             }
