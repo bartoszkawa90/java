@@ -71,21 +71,18 @@
     <!--        app:layout_constraintEnd_toEndOf="@+id/WebsiteTextView"-->
     <!--        app:layout_constraintStart_toStartOf="@+id/WebsiteTextView" />-->
 
-
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="401dp"
-        android:layout_height="630dp"
+        android:layout_height="587dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="85dp"
         app:layout_constraintBottom_toTopOf="@+id/ViewAllArticles"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.311">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,6 +96,44 @@
                 android:text="\n"
                 android:textColor="#F9DB22"
                 android:textSize="18sp"></TextView>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="402dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/ViewAllArticles"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/LogsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="65dp"
+                android:gravity="left"
+                android:text="Logs"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/WebsiteTextView"
+                app:layout_constraintStart_toStartOf="@+id/WebsiteTextView" />
 
         </LinearLayout>
     </ScrollView>

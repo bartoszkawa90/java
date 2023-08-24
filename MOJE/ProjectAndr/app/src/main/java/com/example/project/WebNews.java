@@ -45,6 +45,7 @@ public class WebNews implements Runnable {
             News.clear();
 
             Document doc = Jsoup.connect("https://krknews.pl/").get();
+            MainActivity.Log.info("Mine info : Infortmation from website collected");
             title = doc.title();
             Elements articles = doc.select("a");
 
@@ -67,6 +68,7 @@ public class WebNews implements Runnable {
                     }
                 }
             }
+            MainActivity.Log.info("Mine info : Links and Headlines extracted ");
             numberOfArticles = News.size();
             informationCollected = true;
             //--------------------------------------------------------------------------------------
@@ -87,11 +89,12 @@ public class WebNews implements Runnable {
                     e.printStackTrace();
                 }
             }
+            MainActivity.Log.info("Mine info : Articles were formed ");
 
         }
         catch(IOException e)
         {
-            e.printStackTrace();
+            MainActivity.Log.severe("Mine exception : Downloading data from website failed ");
         }
 
     }
@@ -102,12 +105,14 @@ public class WebNews implements Runnable {
         while(true){
             if(informationCollected) {
                 try {
-                    Thread.sleep(10000);
+                    Thread.sleep(20000);
                 } catch (InterruptedException e) {
+                    MainActivity.Log.severe("Mine exception : Failed to sleep WebNews Thread ");
                     throw new RuntimeException(e);
                 }
             }
             collectNews();
+            MainActivity.Log.info("Mine info : Whole set of news collected ");
         }
     }
 
@@ -125,8 +130,10 @@ public class WebNews implements Runnable {
             return News;
         }
         catch (Exception e){
-//            e.printStackTrace();
+            e.printStackTrace();
             News.put("Brak Newsów", "Brak Newsów");
+            MainActivity.Log.severe("Mine exception : Failed to get a set of News " +
+                    "from WebNews ");
             return News;
         }
     }
